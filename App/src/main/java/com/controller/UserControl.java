@@ -12,22 +12,26 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.model.UserModel;
 import com.service.UserService;
 
 @RestController
+@RequestMapping("api")
 public class UserControl {
     @Autowired
     private UserService userService;
-
     
+    @GetMapping("home")
+    public ResponseEntity<String> homeWelcome(){
+        return ResponseEntity.ok("Welcome to home page.");
+    }
     
     @GetMapping("userList")
     public ResponseEntity<List<UserModel>> getAllUsers(){
         return ResponseEntity.ok(userService.getAllUsers());
     }
-
     
     @GetMapping("userByName")
     public ResponseEntity<UserModel> getUserByName(@RequestBody UserModel item){
