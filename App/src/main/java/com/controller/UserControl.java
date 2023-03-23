@@ -2,6 +2,8 @@ package com.controller;
 
 import java.util.List;
 
+import javax.management.InvalidAttributeValueException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,11 +19,9 @@ import com.service.UserService;
 @RestController
 public class UserControl {
     @Autowired
-    private final UserService userService;
+    private UserService userService;
 
-    public UserControl (UserService userService){
-        this.userService = userService;
-    }
+    
     
     @GetMapping("userList")
     public ResponseEntity<List<UserModel>> getAllUsers(){
@@ -31,7 +31,12 @@ public class UserControl {
     
     @GetMapping("userByName")
     public ResponseEntity<UserModel> getUserByName(@RequestBody UserModel item){
-        return ResponseEntity.ok(userService.searchUserByName(item.getName()));
+        return ResponseEntity.ok(userService.getUserByName(item.getName()));
+    }
+
+    @PutMapping("userLogin")
+    public ResponseEntity<UserModel> userLogin(@RequestBody UserModel user) throws InvalidAttributeValueException{
+        return ResponseEntity.ok(userService.loggedUser(user));
     }
 
     @PostMapping("userCreate")
