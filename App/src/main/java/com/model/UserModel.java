@@ -17,8 +17,8 @@ import lombok.EqualsAndHashCode;
 public class UserModel implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue
+    private String id;
 
     
     private String name;
