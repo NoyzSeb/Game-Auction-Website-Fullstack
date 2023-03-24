@@ -14,12 +14,12 @@ import lombok.EqualsAndHashCode;
 @RedisHash("ItemModel")
 public class ItemModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue
+    private String id;
     
     @Indexed
     private String  name;
-    private Integer type;
+    private String type;
     private Double  price;
 
 

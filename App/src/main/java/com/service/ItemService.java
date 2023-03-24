@@ -70,6 +70,7 @@ public class ItemService {
     }
 
     public void deleteItembyId(Long id){
+        System.out.println("Deleted " + id +" "+id.getClass().getName());
         itemRepo.deleteById(id);
     }
 }
