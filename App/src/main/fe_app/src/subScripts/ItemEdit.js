@@ -34,7 +34,7 @@ const ItemEdit=()=>{
         event.preventDefault();
         
         await fetch(`/api/updateItem/${id}`,{
-            method:  'PUT',
+            method: 'PUT' ,
             headers : {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
@@ -58,7 +58,7 @@ const ItemEdit=()=>{
                         onChange={handleChange} autoComplete='name'/>
                 </FormGroup>
                 <FormGroup>
-                    <Label for='type'>Genre</Label>
+                    <Label for='type'>Type</Label>
                     <Input type='text' name='type' id='type' value={item.type ||''}
                         onChange={handleChange} autoComplete='type'/>
                 </FormGroup>

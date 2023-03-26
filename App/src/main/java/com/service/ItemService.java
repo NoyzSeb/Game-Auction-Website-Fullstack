@@ -1,13 +1,9 @@
 package com.service;
 
 import java.util.List;
-import javax.management.InvalidAttributeValueException;
-
-import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
 import org.springframework.stereotype.Service;
 import com.model.ItemModel;
 import com.repo.ItemRepo;
-import jakarta.persistence.EntityExistsException;
 
 @Service
 public class ItemService {
@@ -62,9 +58,10 @@ public class ItemService {
 
     public ItemModel updateItem(ItemModel item, Long id){
         ItemModel olditem=getItemById(id);
-
-        olditem.setName(item.getName());
-        olditem.setPrice(item.getPrice());
+        
+        if(item.getName()!=null)olditem.setName(item.getName());
+        if(item.getType()!=null)olditem.setType(item.getType());
+        if(item.getPrice()!=null)olditem.setPrice(item.getPrice());
         
         return itemRepo.save(olditem);
     }

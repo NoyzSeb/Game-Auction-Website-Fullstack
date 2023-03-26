@@ -37,7 +37,7 @@ const ItemList =() =>{
 
    const itemList = items.map(item =>{
       const products_price = `${item.price +" Coin"||''}`
-      const products_type = `${item.id||''}`
+      const products_type = `${item.type||''}`
       return <tr key={item.id}>
         <td style={{whiteSpace: 'nowrap'}}>{item.name}</td>
         <td>{products_type}</td>
@@ -63,7 +63,7 @@ const ItemList =() =>{
               <thead>
                 <tr>
                   <th width='20%'>Name</th>
-                  <th width='20%'>Genre</th>
+                  <th width='20%'>Type</th>
                   <th width='20%'>Price</th>
                   <th width="10%">Actions</th>                  
                 </tr>

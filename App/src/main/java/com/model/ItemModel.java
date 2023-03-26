@@ -14,8 +14,8 @@ import lombok.EqualsAndHashCode;
 @RedisHash("ItemModel")
 public class ItemModel {
     @Id
-    @GeneratedValue
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
     
     @Indexed
     private String  name;
