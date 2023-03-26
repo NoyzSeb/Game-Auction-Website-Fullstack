@@ -9,6 +9,7 @@ const Home = () => {
       <AppNavbar/>
       <Container fluid>
         <Button color="link"><Link to="/items"> Manage Item Showcase </Link></Button>
+        <Button color="link"><Link to="/auction"> AuctionList </Link></Button>
       </Container>
     </div>
   );
