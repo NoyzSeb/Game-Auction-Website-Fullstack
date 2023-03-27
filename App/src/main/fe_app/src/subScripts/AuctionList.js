@@ -21,19 +21,6 @@ const AuctionList =() =>{
         })
     },[])
 
-   const remove = async (id) =>{
-       await fetch(`api/deleteItem/${id}`,{
-          method: "DELETE",
-          headers: {
-            'Accept':'application/json',
-            'Content-Type':'application/json'
-          }
-       }).then(()=>{
-        
-        let updatedItems =[...items].filter(i=> i.id !==id);
-        setItems(updatedItems);
-       });
-   }
    if(loading){
     return <p>Loading...</p>
    }
@@ -49,7 +36,7 @@ const AuctionList =() =>{
         <td>
           <div className='end'>
           <ButtonGroup>
-            <Button size='sm' color='primary' tag={Link} to={"/auction/"+ item.id}>Begin Auction</Button>
+            <Button size='sm' color='primary' tag={Link} to={"/"+ item.id}> Begin Auction</Button>
           </ButtonGroup>
           </div>       
         </td>

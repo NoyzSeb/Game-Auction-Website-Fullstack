@@ -58,6 +58,8 @@ public class ItemService {
 
     public ItemModel updateItem(ItemModel item, Long id){
         ItemModel olditem=getItemById(id);
+        System.out.println("Old Item"+ olditem);
+        System.out.println("updated item"+ item);
         
         if(item.getName()!=null)olditem.setName(item.getName());
         if(item.getType()!=null)olditem.setType(item.getType());

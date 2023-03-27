@@ -70,8 +70,7 @@ const ItemList =() =>{
                 <tr>
                   <th width='20%'>Name</th>
                   <th width='20%'>Type</th>
-                  <th width='20%'>Price</th>
-                  
+                  <th width='20%'>Price</th>                  
                   <th width="10%">Actions</th>                  
                 </tr>
               </thead>
