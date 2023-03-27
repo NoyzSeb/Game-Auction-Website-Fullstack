@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+
 @Data
 @EqualsAndHashCode
 @RedisHash("ItemModel")
