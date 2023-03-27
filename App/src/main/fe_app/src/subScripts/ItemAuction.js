@@ -1,6 +1,6 @@
-import React, { useEffect, useReducer, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import { Button, Container, Form, FormGroup, Input, Label,Table,ButtonGroup } from 'reactstrap';
+import React, { useEffect,  useState } from 'react';
+import {  useNavigate, useParams } from 'react-router-dom';
+import { Button, Container, Form, FormGroup, Input, Label,Table } from 'reactstrap';
 import AppNavbar from './AppNavbar';
 
 
@@ -57,6 +57,7 @@ const ItemAuction=()=>{
             },
             body: JSON.stringify(LastOffer)
         });
+        navigate('/auction')
         
     }
     if(loading){
