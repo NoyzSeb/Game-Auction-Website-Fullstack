@@ -23,6 +23,8 @@ public class UserService {
     }
 
     public UserModel getUserById(Long id){
+        
+
         return userRepo.findById(id).orElseThrow(()-> new RuntimeException("Couldnt find the user with"+id));
     }
     
@@ -62,9 +64,9 @@ public class UserService {
     public UserModel updateUser(UserModel user, Long id){
         UserModel oldUser= getUserById(id);
 
-        oldUser.setName(user.getName());
-        oldUser.setPassword(user.getPassword());
-        oldUser.setLogged(user.isLogged());
+        if(user.getName()!=null)oldUser.setName(user.getName());
+        if(user.getPassword()!=null)oldUser.setPassword(user.getPassword());
+        if(user.isLogged()!=true)oldUser.setLogged(user.isLogged());
 
         return userRepo.save(oldUser);
     }

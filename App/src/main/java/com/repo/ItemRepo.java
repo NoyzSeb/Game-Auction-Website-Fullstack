@@ -1,13 +1,12 @@
 package com.repo;
 
-import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
 
 import com.model.ItemModel;
 
-
+@EnableRedisRepositories
 public interface ItemRepo extends JpaRepository<ItemModel,Long> {
     
 }

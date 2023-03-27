@@ -32,10 +32,10 @@ public class ItemControl {
         return ResponseEntity.ok(itemService.getItemById(id));
     }
     
-    @GetMapping("itemByName")
-    public ResponseEntity<ItemModel> getItemByName(@RequestBody ItemModel item){
+    @GetMapping("itemById/{id}")
+    public ResponseEntity<ItemModel> getItemByName(@PathVariable Long id){
         
-        return ResponseEntity.ok(itemService.getItemByName(item.getName()));
+        return ResponseEntity.ok(itemService.getItemById(id));
     }
 
     @PostMapping("createItem")
