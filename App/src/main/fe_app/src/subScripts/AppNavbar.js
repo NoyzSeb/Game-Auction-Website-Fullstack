@@ -12,7 +12,6 @@ const AppNavbar = () => {
       <NavbarToggler onClick={() => { setIsOpen(!isOpen) }}/>
       <Collapse isOpen={isOpen} navbar>
         <Nav className="justify-content-end" style={{width: "100%"}} navbar>
-          
         </Nav>
       </Collapse>
     </Navbar>

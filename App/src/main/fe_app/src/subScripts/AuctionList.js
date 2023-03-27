@@ -3,7 +3,7 @@ import { Button, ButtonGroup, Container, Table} from 'reactstrap';
 import AppNavbar from './AppNavbar';
 import { Link } from 'react-router-dom';
 
-const ItemList =() =>{
+const AuctionList =() =>{
 
   
     const[items, setItems] = useState([]);
@@ -21,19 +21,6 @@ const ItemList =() =>{
         })
     },[])
 
-   const remove = async (id) =>{
-       await fetch(`api/deleteItem/${id}`,{
-          method: "DELETE",
-          headers: {
-            'Accept':'application/json',
-            'Content-Type':'application/json'
-          }
-       }).then(()=>{
-        
-        let updatedItems =[...items].filter(i=> i.id !==id);
-        setItems(updatedItems);
-       });
-   }
    if(loading){
     return <p>Loading...</p>
    }
@@ -49,8 +36,7 @@ const ItemList =() =>{
         <td>
           <div className='end'>
           <ButtonGroup>
-            <Button size='sm' color='primary' tag={Link} to={"/items/"+ item.id}>Edit</Button>
-            <Button size='sm' color='danger' onClick={()=>remove(item.id)}>Delete</Button>
+            <Button size='sm' color='primary' tag={Link} to={"/"+ item.id}> Begin Auction</Button>
           </ButtonGroup>
           </div>       
         </td>
@@ -61,16 +47,13 @@ const ItemList =() =>{
       <div>
         <AppNavbar/>
           <Container fluid>
-            <div className=''>
-              <Button color='success' tag={Link} to="/items/new">Add Item</Button>
-            </div>
-            <h3>Item List</h3>
+            <h3>Auction List</h3>
             <Table className='mt-1'>
               <thead>
                 <tr>
                   <th width='20%'>Name</th>
                   <th width='20%'>Type</th>
-                  <th width='20%'>Price</th>                  
+                  <th width='20%'>Price</th>
                   <th width="10%">Actions</th>                  
                 </tr>
               </thead>
@@ -83,4 +66,4 @@ const ItemList =() =>{
    );
 
 };
-export default ItemList;
+export default AuctionList;
