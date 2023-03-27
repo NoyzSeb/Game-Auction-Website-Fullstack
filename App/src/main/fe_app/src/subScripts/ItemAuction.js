@@ -95,7 +95,7 @@ const ItemAuction=()=>{
               <Form onSubmit ={handleSubmit}>
                     <FormGroup className='col-md-4 mb-3'>
                         <Label for ='price'>Price</Label>
-                        <Input type='double' name='price' id='price' value={ offer.price||''}
+                        <Input type='text' name='price' id='price' value={ offer.price||''}
                             onChange={handleChange} autoComplete='price'/>
                     </FormGroup>
                 <FormGroup>
