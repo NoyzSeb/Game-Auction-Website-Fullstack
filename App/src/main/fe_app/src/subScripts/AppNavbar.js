@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler} from 'reactstrap';
+import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler,Button} from 'reactstrap';
 import { Link } from 'react-router-dom';
+import UserLogin from './UserLogin';
 
 const AppNavbar = () => {
 
@@ -8,10 +9,14 @@ const AppNavbar = () => {
 
   return (
     <Navbar color="dark" dark expand="md">
-      <NavbarBrand tag={Link} to="/">Home</NavbarBrand>
+      <NavbarBrand tag={Link} to="/">Press Toggler For Pages</NavbarBrand>
       <NavbarToggler onClick={() => { setIsOpen(!isOpen) }}/>
       <Collapse isOpen={isOpen} navbar>
         <Nav className="justify-content-end" style={{width: "100%"}} navbar>
+        <Button size='sm' color='danger' tag={Link} to={"/userLogin"}> Log Out </Button>
+        <Button color="link"><Link to="/items"> Manage Item Showcase </Link></Button>
+        <Button color="link"><Link to="/auction"> Auction List </Link></Button>
+        <Button color="link"><Link to="/userLogin"> Login Page </Link></Button>
         </Nav>
       </Collapse>
     </Navbar>

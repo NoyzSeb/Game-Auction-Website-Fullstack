@@ -1,11 +1,15 @@
 package com.service;
 
+import java.security.InvalidKeyException;
 import java.util.List;
 import javax.management.InvalidAttributeValueException;
+
+import org.aspectj.weaver.tools.Trace;
 import org.springframework.stereotype.Service;
 import com.model.UserModel;
 import com.repo.UserRepo;
 import jakarta.persistence.EntityExistsException;
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class UserService {
@@ -46,7 +50,13 @@ public class UserService {
                searchedUser = getAllUsers().get(i);
             }
         }
-      return searchedUser;
+
+        if(searchedUser !=null){
+            return searchedUser;
+        }else{
+            throw new EntityNotFoundException("There is no User with this name.");
+        }
+      
        
     }
     /*********/
@@ -71,19 +81,24 @@ public class UserService {
         return userRepo.save(oldUser);
     }
 
-    public UserModel loggedUser(UserModel user) throws InvalidAttributeValueException{
-        UserModel logging_user = getUserByName(user.getName());
+    public Boolean loggedUser(UserModel user) throws InvalidAttributeValueException{
+       UserModel logging_user = getUserByName(user.getName());
+        
+
        try {             
-             
-             if(logging_user.getPassword().equals(user.getPassword())){
+             if(logging_user.getPassword().equals(user.getPassword())&&logging_user.getName().equals(user.getName())){
                   logging_user.setLogged(true);
-                  return userRepo.save(logging_user);
+                  userRepo.save(logging_user);
+                  return true;
               }else{
-                  throw new InvalidAttributeValueException("Invalid Password");
+                  throw new InvalidAttributeValueException("Invalid Login");
               }
        } catch (Exception e) {
            System.out.println(e.getClass() + " " + e.getCause());
-           return userRepo.save(logging_user);
+           userRepo.save(logging_user);
+           
+           return false;
+           
        } 
         
     }
