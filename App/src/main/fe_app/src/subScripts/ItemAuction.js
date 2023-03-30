@@ -1,5 +1,5 @@
 import React, { useEffect,  useState } from 'react';
-import {  useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label,Table } from 'reactstrap';
 import AppNavbar from './AppNavbar';
 
@@ -7,49 +7,67 @@ import AppNavbar from './AppNavbar';
 
 
 const ItemAuction=()=>{
-   
-    const [item, setItem] = useState({});
-    const navigate = useNavigate();
+    const emptyFrom={
+        'name':'',
+        'type':'',
+        'price':'',
+        'lastOffer':''
+
+    }
+    const [item, setItem] = useState({emptyFrom});
     const {id} = useParams();
-    const[loading, setLoading] = useState(false);
     const [offer, setOffer] =useState({})
-    const[LastOffer, setLastOffer] = useState({})
+    const [LastOffer, setLastOffer] = useState({})
     
-    
+
     useEffect(()=>{
-        setLoading(true);
             fetch(`api/itemById/${id}`)
             .then(response => response.json())
             .then(data => {
                 setItem(data);
-                setLoading(false)
-            })  
-        
-    },[id,setItem]);
+            })
+          
+    },[id,item]);
+   
+
     
-    
-    
+
     const handleChange =(event)=>{
+        
+
         const {name, value} = event.target
 
         setOffer({...offer, [name]:value})
+        
     }
 
     const handleOffer = (event)=>{
         event.preventDefault();
-
+       
         setLastOffer(offer)
+        
+
+        fetch(`/api/updateItem/${id}`,{
+            method: 'PUT' ,
+            headers : {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({'lastOffer':offer.price})
+        });
+
+        console.log({
+            to:'/auction',
+            offer: LastOffer
+        })
+
+        
     }
 
     const handleSubmit = (event) =>{
         event.preventDefault();
-       
-        setItem({
-            'name':item.name,
-            'type':item.type,
-            'price': LastOffer.price
-           })
-         fetch(`/api/updateItem/${id}`,{
+        
+        fetch(`/api/updateItem/${id}`,{
             method: 'PUT' ,
             headers : {
               'Accept': 'application/json',
@@ -57,21 +75,18 @@ const ItemAuction=()=>{
             },
             body: JSON.stringify(LastOffer)
         });
-        navigate('/auction')
-        
+                
     }
-    if(loading){
-        return <p>Loading...</p>
-       }
-    
-    const auction_Item = 
+
+ 
+
+    const auction_Item =  
         <tr key={item.id}>
             <td style={{whiteSpace: 'nowrap'}}>{item.name}</td>
             <td>{item.type}</td>
             <td>{item.price}</td>
-            <td>{LastOffer.price}</td>
+            <td>{item.lastOffer}</td>
         </tr>
-    
     
         
     return(
@@ -90,7 +105,7 @@ const ItemAuction=()=>{
                   </tr>
               </thead>
               <tbody>
-                {auction_Item}
+                 {auction_Item}
               </tbody>
               </Table>
               <Form onSubmit ={handleSubmit}>

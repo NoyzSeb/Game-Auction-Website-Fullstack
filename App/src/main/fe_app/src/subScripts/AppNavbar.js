@@ -13,10 +13,9 @@ const AppNavbar = () => {
       <NavbarToggler onClick={() => { setIsOpen(!isOpen) }}/>
       <Collapse isOpen={isOpen} navbar>
         <Nav className="justify-content-end" style={{width: "100%"}} navbar>
+        <div className='col-1'>
         <Button size='sm' color='danger' tag={Link} to={"/userLogin"}> Log Out </Button>
-        <Button color="link"><Link to="/items"> Manage Item Showcase </Link></Button>
-        <Button color="link"><Link to="/auction"> Auction List </Link></Button>
-        <Button color="link"><Link to="/userLogin"> Login Page </Link></Button>
+        </div>
         </Nav>
       </Collapse>
     </Navbar>

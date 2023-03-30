@@ -23,12 +23,12 @@ public class ItemControl {
     
     @GetMapping("itemList")
     public ResponseEntity<List<ItemModel>> getAllItems(){
-         System.out.println("List Delivered");
+         
         return ResponseEntity.ok(itemService.getAllItems());
     }
     @GetMapping("updateItem/{id}")
     public ResponseEntity<ItemModel> getItemByID(@RequestBody ItemModel item, @PathVariable Long id){
-        System.out.println("Delivered Item");
+   
         return ResponseEntity.ok(itemService.getItemById(id));
     }
     

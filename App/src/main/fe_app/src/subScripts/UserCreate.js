@@ -3,8 +3,7 @@ import { Button, Container, Form, FormGroup, Input, Label,Table } from 'reactstr
 import AppNavbar from './AppNavbar';
 import { Link, useNavigate,createSearchParams } from 'react-router-dom';
 
-
-const UserLogin =()=>{
+const UserCreate = ()=>{
     const navigate = useNavigate();
     const [userData, setUserData]=useState({})
     const[loading, setLoading] = useState(false);
@@ -28,8 +27,8 @@ const UserLogin =()=>{
     })
     
       setLoading(true);
-            fetch(`api/userLogin`,{
-                method: 'PUT',
+            fetch(`api/userCreate`,{
+                method: 'POST',
                 headers:{
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
@@ -38,15 +37,8 @@ const UserLogin =()=>{
             })
             .then(response => response.json())
             .then(data => {
-               if(data==true){
-                setloginStatus(true);
-                navigate("/auction")
-               }else{
-                setloginStatus(false);
-                navigate('/userLogin')
-               }
-                 
                 setLoading(false)
+                navigate('/userLogin')
             })       
     };
          
@@ -60,7 +52,7 @@ const UserLogin =()=>{
           <div className="Auth-form-container">
       <Form className="Auth-form" onSubmit={handleChange}>
         <div className="Auth-form-content">
-          <h3 className="Auth-form-title">Login Page</h3>
+          <h3 className="Auth-form-title">Sign In Page</h3>
         
           <div className="form-group mt-3">
             <label>Nickname</label>
@@ -73,16 +65,16 @@ const UserLogin =()=>{
                             onChange={handleChange} autoComplete='password'/>
           </div>
           <div className="gap-1 mt-3">
-            <Button color='primary' onClick={handleSubmit}>Login</Button> 
+            <Button color='primary' onClick={handleSubmit}>Create</Button> 
           </div>
           <p className="forgot-password text-right mt-2">
-            <Button href="http://localhost:3000/userCreate">Create New User</Button>
+            <Button href="http://localhost:3000/userLogin">Already Have An Account</Button>
           </p>
         </div>
       </Form>
     </div> 
     </div>
     );
-}
 
-export default UserLogin;
+}
+export default UserCreate;

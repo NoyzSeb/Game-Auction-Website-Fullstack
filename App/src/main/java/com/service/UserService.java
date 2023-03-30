@@ -1,10 +1,8 @@
 package com.service;
 
-import java.security.InvalidKeyException;
+
 import java.util.List;
 import javax.management.InvalidAttributeValueException;
-
-import org.aspectj.weaver.tools.Trace;
 import org.springframework.stereotype.Service;
 import com.model.UserModel;
 import com.repo.UserRepo;

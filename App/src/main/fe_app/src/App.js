@@ -7,17 +7,19 @@ import ItemEdit from './subScripts/ItemEdit';
 import ItemAuction from './subScripts/ItemAuction';
 import AuctionList from './subScripts/AuctionList';
 import UserLogin from './subScripts/UserLogin';
+import UserCreate from './subScripts/UserCreate';
 
 const App = () => {
   return (
     <Router>
       <Routes>
-        <Route exact path="/home" element={<Home/>}/>
+        <Route exact path="/" element={<Home/>}/>
         <Route path='/items' exact={true} element={<ItemList/>}/>
         <Route path='/items/:id' element={<ItemEdit/>}/>
         <Route path='/auction' element={<AuctionList/>}/>
         <Route path='/:id' element={<ItemAuction/>}/>
         <Route path='/userLogin' element={<UserLogin/>}/>
+        <Route path='/userCreate' element={<UserCreate/>}/>
 
       </Routes>
     </Router>

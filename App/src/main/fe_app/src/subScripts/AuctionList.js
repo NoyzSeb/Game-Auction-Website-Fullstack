@@ -1,38 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { Button, ButtonGroup, Container, Table} from 'reactstrap';
 import AppNavbar from './AppNavbar';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams, useNavigate} from 'react-router-dom';
+
+
 
 const AuctionList =() =>{
-
+  
   
     const[items, setItems] = useState([]);
+    const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
     const[loading, setLoading] = useState(false);
-    
-
+ 
     useEffect(()=>{
-        setLoading(true);
-
-        fetch(`api/itemList`)
-        .then(response => response.json())
-        .then(data=>{
+          fetch(`api/itemList`)
+          .then(response => response.json())
+          .then(data=>{
             setItems(data);
-            setLoading(false)
-        })
-    },[])
-
-   if(loading){
-    return <p>Loading...</p>
-   }
-
+          })
+        
+    },[items,setItems])
    
    const itemList = items.map(item =>{
       const products_price = `${item.price +" Coin"||''}`
       const products_type = `${item.type||''}`
+      const products_lastOffer=`${item.lastOffer+" Coin"||''}`
       return <tr key={item.id}>
         <td style={{whiteSpace: 'nowrap'}}>{item.name}</td>
         <td>{products_type}</td>
         <td>{products_price}</td>
+        <td>{products_lastOffer}</td>
+
         <td>
           <div className='end'>
           <ButtonGroup>
@@ -54,6 +53,7 @@ const AuctionList =() =>{
                   <th width='20%'>Name</th>
                   <th width='20%'>Type</th>
                   <th width='20%'>Price</th>
+                  <th width='20%'>Last Offer</th>
                   <th width="10%">Actions</th>                  
                 </tr>
               </thead>
@@ -64,6 +64,8 @@ const AuctionList =() =>{
           </Container>        
       </div>
    );
+  
+    
 
 };
 export default AuctionList;

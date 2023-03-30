@@ -8,13 +8,22 @@ const Home = () => {
     <div>
       <AppNavbar/>
       <Container fluid>
-        <Button color="link"><Link to="/items"> Manage Item Showcase </Link></Button>
-        <Button color="link"><Link to="/auction"> Auction List </Link></Button>
-        <Button color="link"><Link to="/userLogin"> Login Page </Link></Button>
-
+        <div className='mb-2'>
+        <Button  href="/items"> Manage Item Showcase </Button>
+        </div>
+        <div className='mb-2'>
+        <Button  href="/auction"> Auction List </Button>
+        </div>
+        <div className='mb-2'>
+        <Button  href="/userLogin"> Login Page </Button>
+        </div>
+        <div className='mb-2'>
+        <Button  href="/userCreate"> Create User </Button>
+        </div>
       </Container>
     </div>
   );
 }
 
 export default Home;
+
