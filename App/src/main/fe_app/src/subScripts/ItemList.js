@@ -7,17 +7,14 @@ const ItemList =() =>{
 
   
     const[items, setItems] = useState([]);
-    const[loading, setLoading] = useState(false);
     
 
     useEffect(()=>{
-        setLoading(true);
 
         fetch(`api/itemList`)
         .then(response => response.json())
         .then(data=>{
             setItems(data);
-            setLoading(false)
         })
     },[])
 
@@ -34,9 +31,7 @@ const ItemList =() =>{
         setItems(updatedItems);
        });
    }
-   if(loading){
-    return <p>Loading...</p>
-   }
+   
 
    
    const itemList = items.map(item =>{
@@ -61,7 +56,7 @@ const ItemList =() =>{
       <div>
         <AppNavbar/>
           <Container fluid>
-            <div className=''>
+            <div className='float-end'>
               <Button color='success' tag={Link} to="/items/new">Add Item</Button>
             </div>
             <h3>Item List</h3>

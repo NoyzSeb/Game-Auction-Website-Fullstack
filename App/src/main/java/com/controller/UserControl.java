@@ -34,12 +34,13 @@ public class UserControl {
     }
     
     @GetMapping("userByName")
-    public ResponseEntity<UserModel> getUserByName(@RequestBody UserModel item){
-        return ResponseEntity.ok(userService.getUserByName(item.getName()));
+    public ResponseEntity<UserModel> getUserByName(@RequestBody UserModel user){
+        return ResponseEntity.ok(userService.getUserByName(user.getName()));
     }
 
     @PutMapping("userLogin")
     public ResponseEntity<UserModel> userLogin(@RequestBody UserModel user) throws InvalidAttributeValueException{
+        
         return ResponseEntity.ok(userService.loggedUser(user));
     }
 
