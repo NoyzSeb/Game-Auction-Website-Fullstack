@@ -1,28 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { Button, ButtonGroup, Container, Table} from 'reactstrap';
 import AppNavbar from './AppNavbar';
-import { Link, useSearchParams, useNavigate} from 'react-router-dom';
+import { Link,  useNavigate} from 'react-router-dom';
 
 
 
 const AuctionList =() =>{
   
-  
     const[items, setItems] = useState([]);
     const navigate = useNavigate();
-    const [searchParams] = useSearchParams();
-    const[loading, setLoading] = useState(false);
- 
+    const [loginned,setLoginned] = useState()
+    
     useEffect(()=>{
           fetch(`api/itemList`)
           .then(response => response.json())
           .then(data=>{
             setItems(data);
+            if(sessionStorage.getItem('loginStat') != "true"){
+              return navigate('/userLogin')
+            }
           })
-        
+          
     },[items,setItems])
    
-   const itemList = items.map(item =>{
+    
+   
+    const itemList = items.map(item =>{
       const products_price = `${item.price +" Coin"||''}`
       const products_type = `${item.type||''}`
       const products_lastOffer=`${item.lastOffer+" Coin"||''}`
@@ -68,4 +71,5 @@ const AuctionList =() =>{
     
 
 };
+
 export default AuctionList;

@@ -1,6 +1,5 @@
 import '../App.css';
 import AppNavbar from './AppNavbar';
-import { Link } from 'react-router-dom';
 import { Button, Container } from 'reactstrap';
 
 const Home = () => {
@@ -14,13 +13,7 @@ const Home = () => {
         <div className='mb-2'>
         <Button  href="/auction"> Auction List </Button>
         </div>
-        <div className='mb-2'>
-        <Button  href="/userLogin"> Login Page </Button>
-        </div>
-        <div className='mb-2'>
-        <Button  href="/userCreate"> Create User </Button>
-        </div>
-      </Container>
+        </Container>
     </div>
   );
 }

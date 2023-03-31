@@ -79,7 +79,7 @@ public class UserService {
         return userRepo.save(oldUser);
     }
 
-    public Boolean loggedUser(UserModel user) throws InvalidAttributeValueException{
+    public UserModel loggedUser(UserModel user) throws InvalidAttributeValueException{
        UserModel logging_user = getUserByName(user.getName());
         
 
@@ -87,7 +87,7 @@ public class UserService {
              if(logging_user.getPassword().equals(user.getPassword())&&logging_user.getName().equals(user.getName())){
                   logging_user.setLogged(true);
                   userRepo.save(logging_user);
-                  return true;
+                  return logging_user;
               }else{
                   throw new InvalidAttributeValueException("Invalid Login");
               }
@@ -95,7 +95,7 @@ public class UserService {
            System.out.println(e.getClass() + " " + e.getCause());
            userRepo.save(logging_user);
            
-           return false;
+           return user;
            
        } 
         

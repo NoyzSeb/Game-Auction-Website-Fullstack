@@ -6,15 +6,18 @@ import UserLogin from './UserLogin';
 const AppNavbar = () => {
 
   const [isOpen, setIsOpen] = useState(false);
+  const logOut=()=>{
+    sessionStorage.setItem('loginStat', JSON.stringify(false))
+  }
 
   return (
     <Navbar color="dark" dark expand="md">
-      <NavbarBrand tag={Link} to="/">Press Toggler For Pages</NavbarBrand>
+      <Button tag={Link} color='primary' to="/">Home Page</Button>
       <NavbarToggler onClick={() => { setIsOpen(!isOpen) }}/>
       <Collapse isOpen={isOpen} navbar>
         <Nav className="justify-content-end" style={{width: "100%"}} navbar>
-        <div className='col-1'>
-        <Button size='sm' color='danger' tag={Link} to={"/userLogin"}> Log Out </Button>
+        <div >
+        <Button size='sm' color='danger' onClick={logOut} tag={Link} to={"/userLogin"}> Log Out </Button>
         </div>
         </Nav>
       </Collapse>

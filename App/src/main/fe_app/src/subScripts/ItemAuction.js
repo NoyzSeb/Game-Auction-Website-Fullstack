@@ -1,5 +1,5 @@
 import React, { useEffect,  useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams,useNavigate } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label,Table } from 'reactstrap';
 import AppNavbar from './AppNavbar';
 
@@ -17,21 +17,25 @@ const ItemAuction=()=>{
     const [item, setItem] = useState({emptyFrom});
     const {id} = useParams();
     const [offer, setOffer] =useState({})
+    const [loginned,setLoginned] = useState()
     const [LastOffer, setLastOffer] = useState({})
+    const navigate = useNavigate();
+
     
 
     useEffect(()=>{
+          setLoginned(localStorage.getItem('loginStat'))
             fetch(`api/itemById/${id}`)
             .then(response => response.json())
             .then(data => {
                 setItem(data);
+                if(sessionStorage.getItem('loginStat') != "true"){
+                    return navigate('/userLogin')
+                  }
             })
           
     },[id,item]);
    
-
-    
-
     const handleChange =(event)=>{
         
 
@@ -54,14 +58,7 @@ const ItemAuction=()=>{
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({'lastOffer':offer.price})
-        });
-
-        console.log({
-            to:'/auction',
-            offer: LastOffer
-        })
-
-        
+        });        
     }
 
     const handleSubmit = (event) =>{
@@ -116,6 +113,7 @@ const ItemAuction=()=>{
                     </FormGroup>
                 <FormGroup>
                     <Button color='primary' onClick={handleOffer}>Offer</Button>
+                    <Button color='danger' href={'/auction'} >Auction List</Button>
                     <Button color='danger' type='submit' >End Auction</Button>
                 </FormGroup>
             </Form>          

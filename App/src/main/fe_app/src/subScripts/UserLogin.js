@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Container, Form, FormGroup, Input, Label,Table } from 'reactstrap';
-import AppNavbar from './AppNavbar';
-import { Link, useNavigate,createSearchParams } from 'react-router-dom';
+import React,{useEffect, useState} from 'react';
+import { Button, Form, Input} from 'reactstrap';
+import {  useNavigate } from 'react-router-dom';
 
 
 const UserLogin =()=>{
     const navigate = useNavigate();
     const [userData, setUserData]=useState({})
-    const[loading, setLoading] = useState(false);
     const [loginPut, setloginPut]=useState({})
     const [loginStatus, setloginStatus] = useState()
     
@@ -18,16 +16,15 @@ const UserLogin =()=>{
         setloginPut({...loginPut, [name]:value.trim()})
 
     }
+
+    useEffect(()=>{
+      sessionStorage.setItem('loginStat', JSON.stringify(false))
+
+    })
        
     const handleSubmit = (event) => {
       //Prevent page reload
       event.preventDefault();
-      setUserData({
-        'name':loginPut.name,
-        'password':loginPut.password
-    })
-    
-      setLoading(true);
             fetch(`api/userLogin`,{
                 method: 'PUT',
                 headers:{
@@ -37,23 +34,25 @@ const UserLogin =()=>{
                 body: JSON.stringify(loginPut)               
             })
             .then(response => response.json())
-            .then(data => {
-               if(data==true){
+            .then(data => {    
+              setUserData(data)
+              if(data.logged === true){
                 setloginStatus(true);
+                sessionStorage.setItem('loginStat', JSON.stringify(true))
+                
                 navigate("/auction")
-               }else{
+               }else if(data.logged === false){
                 setloginStatus(false);
+                sessionStorage.setItem('loginStat', JSON.stringify(false))
                 navigate('/userLogin')
+               }else{
+                 setloginStatus(false);
+                 sessionStorage.setItem('loginStat', JSON.stringify(false))
+                 navigate('/userLogin')
                }
-                 
-                setLoading(false)
-            })       
+            })  
+            
     };
-         
-    function returnLoginStatus (loginStatus) {
-      return loginStatus
-    }
-    
 
     return (
      <div>
@@ -83,6 +82,7 @@ const UserLogin =()=>{
     </div> 
     </div>
     );
-}
 
+    
+}
 export default UserLogin;

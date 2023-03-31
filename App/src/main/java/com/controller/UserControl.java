@@ -39,7 +39,7 @@ public class UserControl {
     }
 
     @PutMapping("userLogin")
-    public ResponseEntity<Boolean> userLogin(@RequestBody UserModel user) throws InvalidAttributeValueException{
+    public ResponseEntity<UserModel> userLogin(@RequestBody UserModel user) throws InvalidAttributeValueException{
         
         return ResponseEntity.ok(userService.loggedUser(user));
     }
