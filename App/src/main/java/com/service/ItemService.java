@@ -64,6 +64,8 @@ public class ItemService {
         if(item.getName()!=null)olditem.setName(item.getName());
         if(item.getType()!=null)olditem.setType(item.getType());
         if(item.getPrice()!=null)olditem.setPrice(item.getPrice());
+        if(item.getLastOffer()!=null)olditem.setLastOffer(item.getLastOffer());
+
         
         return itemRepo.save(olditem);
     }

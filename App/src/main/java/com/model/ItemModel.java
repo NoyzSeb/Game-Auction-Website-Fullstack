@@ -22,6 +22,7 @@ public class ItemModel {
     private String  name;
     private String type;
     private Double  price;
+    private Double lastOffer =0.0;
 
 
 }
