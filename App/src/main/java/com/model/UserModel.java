@@ -20,6 +20,7 @@ public class UserModel implements Serializable {
     
     private String name;
     private String password;
+    private String role;
     private boolean logged;
     
     

@@ -1,21 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { Button, ButtonGroup, Container, Table} from 'reactstrap';
 import AppNavbar from './AppNavbar';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 
 const ItemList =() =>{
 
   
     const[items, setItems] = useState([]);
-    
+    const navigate = useNavigate();
+
 
     useEffect(()=>{
-
+      if(sessionStorage.getItem("Role") === "ADMIN"){
         fetch(`api/itemList`)
         .then(response => response.json())
         .then(data=>{
             setItems(data);
         })
+      }else{
+        navigate('/auction')
+      }
     },[])
 
    const remove = async (id) =>{
