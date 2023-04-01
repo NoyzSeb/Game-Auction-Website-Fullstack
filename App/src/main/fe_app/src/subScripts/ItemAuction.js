@@ -32,7 +32,7 @@ const ItemAuction=()=>{
             .then(data => {
                 setItem(data);
                 if(sessionStorage.getItem('loginStat') != "true"){
-                    return navigate('/userLogin')
+                    return navigate('/')
                   }
             })
             EndAuction()

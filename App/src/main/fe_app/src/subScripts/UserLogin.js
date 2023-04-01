@@ -45,11 +45,11 @@ const UserLogin =()=>{
                }else if(data.logged === false){
                 setloginStatus(false);
                 sessionStorage.setItem('loginStat', JSON.stringify(false))
-                navigate('/userLogin')
+                navigate('/')
                }else{
                  setloginStatus(false);
                  sessionStorage.setItem('loginStat', JSON.stringify(false))
-                 navigate('/userLogin')
+                 navigate('/')
                }
             })  
             
