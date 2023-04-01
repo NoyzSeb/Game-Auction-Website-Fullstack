@@ -32,7 +32,7 @@ const ItemAuction=()=>{
             .then(data => {
                 setItem(data);
                 if(sessionStorage.getItem('loginStat') != "true"){
-                    return navigate('/userLogin')
+                    return navigate('/')
                   }
             })
             EndAuction()
@@ -61,7 +61,9 @@ const ItemAuction=()=>{
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({'lastOffer':offer.price})
-        });        
+        }).then(response => response.json())
+        .then(data => setItem(data))        
+        
     }
 
     const handleSubmit = (event) =>{
@@ -73,8 +75,10 @@ const ItemAuction=()=>{
               'Accept': 'application/json',
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify(LastOffer)
-        });                
+            body: JSON.stringify({"price":item.lastOffer})
+        }).then(response => response.json())
+        .then(data => setItem(data));     
+                  
     }
    
     const EndAuction=()=>{
@@ -122,9 +126,9 @@ const ItemAuction=()=>{
                     </FormGroup>
                    
                 <FormGroup>
-                    <Button color='success' onClick={handleOffer}>Offer</Button>
-                    <Button color="warning" href={'/auction'} >Auction List</Button>
-                    <Button hidden={show} color='danger' type='submit' >End Auction</Button>
+                    <Button color='success' onClick={handleOffer} style={{marginRight: "10px"}} >Offer</Button>
+                    <Button color="warning" href={'/auction'} style={{marginRight: "10px"}} >Auction List</Button>
+                    <Button hidden={show} color='danger' onClick={handleSubmit}  style={{marginRight: "10px"}}>End Auction</Button>
                  
                 </FormGroup>
             </Form>          

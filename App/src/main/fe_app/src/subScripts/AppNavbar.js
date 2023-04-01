@@ -14,12 +14,12 @@ const AppNavbar = () => {
 
   return (
     <Navbar color="dark" dark expand="md">
-      <Button tag={Link} color='primary' to="/">Home Page</Button>
+      <Button tag={Link} color='primary' to="/home">Home Page</Button>
       <NavbarToggler onClick={() => { setIsOpen(!isOpen) }}/>
       <Collapse isOpen={isOpen} navbar>
         <Nav className="justify-content-end" style={{width: "100%"}} navbar>
         <div>
-        <Button size='sm' color='danger' onClick={logOut} tag={Link} to={"/userLogin"}> Log Out </Button>
+        <Button size='sm' color='danger' onClick={logOut} tag={Link} to={"/"}> Log Out </Button>
         </div>
         </Nav>
       </Collapse>

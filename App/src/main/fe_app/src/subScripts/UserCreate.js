@@ -38,7 +38,7 @@ const UserCreate = ()=>{
             .then(response => response.json())
             .then(data => {
                 setLoading(false)
-                navigate('/userLogin')
+                navigate('/')
             })       
     };
          
@@ -68,7 +68,7 @@ const UserCreate = ()=>{
             <Button color='primary' onClick={handleSubmit}>Create</Button> 
           </div>
           <p className="forgot-password text-right mt-2">
-            <Button href="http://localhost:3000/userLogin">Already Have An Account</Button>
+            <Button href="http://localhost:3000/">Already Have An Account</Button>
           </p>
         </div>
       </Form>
