@@ -16,11 +16,13 @@ const ItemEdit=()=>{
     
     
     useEffect(()=>{
-        if(id !== 'new'){
+        if(sessionStorage.getItem('Role')==='ADMIN'){
             fetch(`api/updateItem/${id}`)
             .then(response => response.json())
             .then(data => setItem(data))
             
+        }else{
+            navigate('/auction')
         }
     },[id,setItem]);
 

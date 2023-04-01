@@ -8,6 +8,8 @@ const AppNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const logOut=()=>{
     sessionStorage.setItem('loginStat', JSON.stringify(false))
+    sessionStorage.setItem('Role', JSON.stringify(null))
+
   }
 
   return (
@@ -16,7 +18,7 @@ const AppNavbar = () => {
       <NavbarToggler onClick={() => { setIsOpen(!isOpen) }}/>
       <Collapse isOpen={isOpen} navbar>
         <Nav className="justify-content-end" style={{width: "100%"}} navbar>
-        <div >
+        <div>
         <Button size='sm' color='danger' onClick={logOut} tag={Link} to={"/userLogin"}> Log Out </Button>
         </div>
         </Nav>
