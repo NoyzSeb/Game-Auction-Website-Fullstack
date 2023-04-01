@@ -20,6 +20,8 @@ const ItemAuction=()=>{
     const [loginned,setLoginned] = useState()
     const [LastOffer, setLastOffer] = useState({})
     const navigate = useNavigate();
+    const [show, setShow] = useState();
+
 
     
 
@@ -33,6 +35,7 @@ const ItemAuction=()=>{
                     return navigate('/userLogin')
                   }
             })
+            EndAuction()
           
     },[id,item]);
    
@@ -71,11 +74,17 @@ const ItemAuction=()=>{
               'Content-Type': 'application/json'
             },
             body: JSON.stringify(LastOffer)
-        });
-                
+        });                
     }
-
- 
+   
+    const EndAuction=()=>{
+        if(sessionStorage.getItem("Role")==="ADMIN"){
+            setShow(false)
+        }else{
+            setShow(true)
+        }
+    }
+    
 
     const auction_Item =  
         <tr key={item.id}>
@@ -111,10 +120,12 @@ const ItemAuction=()=>{
                         <Input type='text' name='price' id='price' value={ offer.price||''}
                             onChange={handleChange} autoComplete='price'/>
                     </FormGroup>
+                   
                 <FormGroup>
-                    <Button color='primary' onClick={handleOffer}>Offer</Button>
-                    <Button color='danger' href={'/auction'} >Auction List</Button>
-                    <Button color='danger' type='submit' >End Auction</Button>
+                    <Button color='success' onClick={handleOffer}>Offer</Button>
+                    <Button color="warning" href={'/auction'} >Auction List</Button>
+                    <Button hidden={show} color='danger' type='submit' >End Auction</Button>
+                 
                 </FormGroup>
             </Form>          
         </Container>

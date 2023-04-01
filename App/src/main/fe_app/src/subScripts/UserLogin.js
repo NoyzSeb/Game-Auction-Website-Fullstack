@@ -19,6 +19,7 @@ const UserLogin =()=>{
 
     useEffect(()=>{
       sessionStorage.setItem('loginStat', JSON.stringify(false))
+      sessionStorage.setItem('Role', JSON.stringify(null))
 
     })
        
@@ -39,7 +40,7 @@ const UserLogin =()=>{
               if(data.logged === true){
                 setloginStatus(true);
                 sessionStorage.setItem('loginStat', JSON.stringify(true))
-                
+                sessionStorage.setItem('Role', data.role)
                 navigate("/auction")
                }else if(data.logged === false){
                 setloginStatus(false);

@@ -65,7 +65,14 @@ public class UserService {
         if(existByName(user.getName())){
             throw new EntityExistsException("There is an account is already exist with "+ user.getName());
         }else{
-            return userRepo.save(user);
+            if(user.getName().equals("admin")&&user.getPassword().equals("admin")){
+                user.setRole("ADMIN");
+                return userRepo.save(user);
+            }else{
+                user.setRole("USER");
+                return userRepo.save(user);
+
+            }
         }
     }
     
@@ -75,6 +82,7 @@ public class UserService {
         if(user.getName()!=null)oldUser.setName(user.getName());
         if(user.getPassword()!=null)oldUser.setPassword(user.getPassword());
         if(user.isLogged()!=true)oldUser.setLogged(user.isLogged());
+        if(user.getRole()!=null)oldUser.setRole(user.getRole());
 
         return userRepo.save(oldUser);
     }
