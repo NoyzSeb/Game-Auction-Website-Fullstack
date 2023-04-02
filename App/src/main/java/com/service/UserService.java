@@ -3,6 +3,8 @@ package com.service;
 
 import java.util.List;
 import javax.management.InvalidAttributeValueException;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.model.UserModel;
 import com.repo.UserRepo;
@@ -11,11 +13,12 @@ import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class UserService {
-    private final UserRepo userRepo;
+    @Autowired
+    private UserRepo userRepo;
+
     public boolean userExist;
     public UserModel searchedUser;
     
-
     public UserService (UserRepo userRepo){
         this.userRepo = userRepo;
     }
