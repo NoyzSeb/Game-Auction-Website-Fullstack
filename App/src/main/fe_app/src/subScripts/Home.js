@@ -2,12 +2,17 @@ import '../App.css';
 import React, {  useEffect, useState } from 'react';
 import AppNavbar from './AppNavbar';
 import { Button, Container } from 'reactstrap';
+import {  useNavigate} from 'react-router-dom';
+
 
 const Home = () => {
   const [show, setShow] = useState();
-  
+  const navigate = useNavigate();
+
   useEffect(()=>{
-    EndAuction()
+    if(sessionStorage.getItem('loginStat') != "true"){
+      return navigate('/userLogin')
+    }
   })
 
   const EndAuction=()=>{

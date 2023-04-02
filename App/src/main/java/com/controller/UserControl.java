@@ -20,9 +20,14 @@ import com.service.UserService;
 @RestController
 @RequestMapping("api")
 public class UserControl {
+    
     @Autowired
     private UserService userService;
     
+    public UserControl (UserService userService){
+        this.userService=userService;
+    }
+
     @GetMapping("home")
     public ResponseEntity<String> homeWelcome(){
         return ResponseEntity.ok("Welcome to home page.");
