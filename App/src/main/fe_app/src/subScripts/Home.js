@@ -13,6 +13,7 @@ const Home = () => {
     if(sessionStorage.getItem('loginStat') != "true"){
       return navigate('/userLogin')
     }
+    EndAuction()
   })
 
   const EndAuction=()=>{
