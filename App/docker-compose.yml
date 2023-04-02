@@ -1,10 +1,11 @@
 services:
-  redis:
+  redis-server:
+    container_name: redis
     image: redis:latest
     volumes:
       - ./data:/data
     ports:
       - 6379:6379
-
+   
 
  
