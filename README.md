@@ -3,7 +3,7 @@ Merhaba ben Berk,
 
 Hazırladığım demo uygulamayı docker-compose üzerinden tek seferde çalıştırmayı ne yazık ki başaramadım. Bu sebepten dolayı kullanıma uygulamanın çalıştırılmasını da ekleyeceğim.
 
-Uygulamamda arka yüz için Java Spring Boot, ön yüz için JavaScript Reactjs ve veri tabanı olarak Redis (Docker üzerinden.) kullandım.
+Uygulamamda arka yüz için Java Spring Boot, ön yüz için JavaScript Reactjs ve veri tabanı olarak Redis (Docker üzerinden.) kullandım. Web uygulaması 3000 protunda çalışmaktadır.
 
 1. Uygulamayı GitHub profilimden clone'layınız.
 2. Terminalde "/spring_boot_react.js/app" konumuna geldikten sonra "docker-compose up" komutu ile Redis'i kurup çalışır hale getirmiş olacaksınız. (Docker uygulaması açık haldeyken.)
